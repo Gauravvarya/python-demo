@@ -1,3 +1,18 @@
+file_name = "student.json" # file name to store student data
+import json
+def load_data():
+    try:
+        with open(file_name, "r") as f:
+            data = json.load(f)
+            return data
+    except:
+            return []
+    
+def save_data(data):
+        with open (file_name,"w") as f:
+            json.dump(data,f)
+    
+
 # Data store in dictionary.
 students = []
 student = {
@@ -17,9 +32,11 @@ def add_student():
 
     students.append(student)
     print("Student added successfully!")
+    save_data(students)
 
 # Function to display all students.
 def display_students():
+    students = load_data()
     if (len(students) == 0):
         print("No students found.")
     else:
@@ -29,6 +46,7 @@ def display_students():
 
 # search student by roll number
 def search_student():
+    students
     roll_no =input("Enter student roll number to search:")
     for student in students:
         if student['roll_no'] == roll_no:
